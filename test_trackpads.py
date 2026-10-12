@@ -256,6 +256,12 @@ class TrackpadTests(unittest.TestCase):
             run.assert_not_called()
         with self.assertRaises(ValueError):m.validate_name('bad" }); os.execute("x")')
 
+    def test_t2_builtin_trackpad_name_with_slash_is_accepted(self):
+        name='apple-inc.-apple-internal-keyboard-/-trackpad-1'
+        self.assertEqual(m.validate_name(name),name)
+        self.assertEqual(m.group_devices([{'name':name}])[name]['names'],[name])
+        self.assertIn('name = "%s"'%name,m.lua_for({name:{'names':[name],'settings':{'enabled':True}}}))
+
     def test_disabled_or_unplugged_device_remains_selectable(self):
         state=copy.deepcopy(self.state)
         state['devices']['apple']['settings']['enabled']=False

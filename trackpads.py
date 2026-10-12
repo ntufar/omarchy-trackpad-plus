@@ -125,7 +125,7 @@ def validate_native_curve(curve):
 
 
 def validate_name(name):
-    if not isinstance(name, str) or not re.fullmatch(r'[A-Za-z0-9_.:+-]{1,128}', name):
+    if not isinstance(name, str) or not re.fullmatch(r'[A-Za-z0-9_.:+/-]{1,128}', name):
         raise ValueError('Unsupported trackpad device name')
     return name
 
